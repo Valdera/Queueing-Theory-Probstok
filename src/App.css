@@ -1,0 +1,11 @@
+@font-face {
+  font-family: Poppins;
+  src: url("/font/Poppins-Regular.ttf");
+}
+
+.App {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  height: 100vh;
+  overflow: hidden;
+}

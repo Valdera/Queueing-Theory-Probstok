@@ -1,0 +1,30 @@
+@import '../../sass/main.scss';
+.mc {
+  font-family: Poppins;
+  color: $color-grey-dark-2;
+  font-size: 1.2rem;
+  margin: 0 2rem;
+  display: flex;
+
+  &_left {
+    flex: 0 0 50%;
+  }
+
+  &__button {
+    margin-top: 2rem;
+    display: flex;
+    & > *:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > * {
+      height: 30rem;
+      width: 23rem;
+    }
+  }
+}
