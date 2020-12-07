@@ -2,6 +2,7 @@ class McCalc {
   constructor(lambda, miu, customer, server) {
     this.lambda = lambda;
     this.miu = miu;
+    this.mode = 'mc';
     this.server = server;
     this.customer = customer;
     this.intensity = lambda / (miu * server);

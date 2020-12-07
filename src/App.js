@@ -11,16 +11,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: '',
-      mode: ''
+      answer: ''
     };
     this.handleAnswer = this.handleAnswer.bind(this);
   }
 
-  handleAnswer(answer, mode) {
+  handleAnswer(answer) {
     this.setState({
-      answer: answer,
-      mode: mode
+      answer: answer
     });
   }
 

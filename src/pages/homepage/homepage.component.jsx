@@ -22,11 +22,11 @@ class HomePage extends Component {
           <h1>Pilih mode kalkulasi</h1>
           <h3>Perhitungan teori antrian untuk jumlah pelanggan terbatas</h3>
           <div className="homepage__menu">
-            <span>1 service</span>
+            <span>1 server</span>
             <ButtonRound eventHandler={(e) => this.handleClick(e, 'm1')}>
               M/M/1/K
             </ButtonRound>
-            <span>c service</span>
+            <span>c server</span>
             <ButtonRound eventHandler={(e) => this.handleClick(e, 'mc')}>
               M/M/c/K
             </ButtonRound>

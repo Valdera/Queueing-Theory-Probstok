@@ -4,8 +4,6 @@ import BackButton from '../../components/back-button/back-button.component';
 import AnswerItem from '../../components/answer-item/answer-item.component';
 import { ReactComponent as MathSvg } from '../../assets/math.svg';
 import InputData from '../../components/input-data/input-data.component';
-import McCalc from '../../utils/mcCalculation';
-import M1Calc from '../../utils/m1Calculation';
 import Circle from '../../components/circle/circle.component';
 import CircleArr from '../../components/circle-arr/circle-arr.component';
 
@@ -15,21 +13,19 @@ export class Answer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: null,
-      n: 0,
-      mode: null
+      n: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.generateDiagram = this.generateDiagram.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      answer: this.props.answer,
-      mode: this.props.mode
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     answer: this.props.answer,
+  //     mode: this.props.mode
+  //   });
+  // }
 
   handleChange(evt) {
     this.setState({
@@ -42,50 +38,37 @@ export class Answer extends Component {
   }
 
   generateDiagram() {
-    const { mode, answer } = this.state;
+    const { answer } = this.props;
+    const mode = answer.mode;
     let arrElement = [];
     if (mode === 'm1') {
       for (let i = 0; i <= answer.customer + 1; i++) {
         if (i === answer.customer + 1) {
-          arrElement.push(<Circle mid={i} key={`${i}-k`} />);
+          arrElement.push(<Circle mid={i} />);
         } else if (i === answer.customer) {
-          arrElement.push(<CircleArr top="0" bot="0" mid={i} key={`${i}-k`} />);
+          arrElement.push(<CircleArr top="0" bot="0" mid={i} />);
         } else {
-          arrElement.push(
-            <CircleArr top="&lambda;" bot="&micro;" mid={i} key={`${i}-k`} />
-          );
+          arrElement.push(<CircleArr top="&lambda;" bot="&micro;" mid={i} />);
         }
       }
     } else if (mode === 'mc') {
       if (answer.server > 1) {
         for (let i = 0; i < answer.server - 1; i++) {
           arrElement.push(
-            <CircleArr
-              top="&lambda;"
-              num={i + 1}
-              bot="&micro;"
-              mid={i}
-              key={`${i}-k`}
-            />
+            <CircleArr top="&lambda;" num={i + 1} bot="&micro;" mid={i} />
           );
         }
       }
       for (let i = answer.server - 1; i < answer.customer - 1; i++) {
         arrElement.push(
-          <CircleArr
-            top="&lambda;"
-            num={answer.server}
-            bot="&micro;"
-            mid={i}
-            key={`${i}-m`}
-          />
+          <CircleArr top="&lambda;" num={answer.server} bot="&micro;" mid={i} />
         );
       }
       for (let i = answer.customer - 1; i <= answer.customer + 1; i++) {
         if (i === answer.customer + 1) {
-          arrElement.push(<Circle mid={i} key={`${i}-n`} />);
+          arrElement.push(<Circle mid={i} />);
         } else if (i === answer.customer) {
-          arrElement.push(<CircleArr top="0" bot="0" mid={i} key={`${i}-n`} />);
+          arrElement.push(<CircleArr top="0" bot="0" mid={i} />);
         } else {
           arrElement.push(
             <CircleArr
@@ -93,7 +76,6 @@ export class Answer extends Component {
               num={answer.server}
               bot="&micro;"
               mid={i}
-              key={`${i}-n`}
             />
           );
         }
@@ -104,8 +86,10 @@ export class Answer extends Component {
 
   render() {
     const { handleBack, handleChange } = this;
-    const { answer, n } = this.state;
+    const { answer } = this.props;
+    const { n } = this.state;
     const diagram = this.generateDiagram();
+    console.log(answer);
     return (
       <div className="answer">
         <div className="answer-left">
@@ -120,7 +104,7 @@ export class Answer extends Component {
         <div className="answer-right">
           <div className="answer-title">
             <BackButton eventHandler={handleBack} />
-            <h1>M/M/c/K Answer:</h1>
+            <h1>{answer.mode === 'mc' ? 'M/M/c/K' : 'M/M/1/K'} Answer:</h1>
           </div>
 
           <AnswerItem

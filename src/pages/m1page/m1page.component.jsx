@@ -4,6 +4,7 @@ import SubmitButton from '../../components/submit-button/submit-button.component
 import BackButton from '../../components/back-button/back-button.component';
 import { ReactComponent as LaptopSvg } from '../../assets/test.svg';
 import M1Calc from '../../utils/m1Calculation';
+import Warning from '../../components/warning/warning.component';
 
 import '../mcpage/mcpage.component';
 
@@ -13,11 +14,20 @@ export class M1Page extends Component {
     this.state = {
       miu: 0,
       lambda: 0,
-      customer: 0
+      customer: 0,
+      warning: false,
+      warn: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose() {
+    this.setState({
+      warning: false
+    });
   }
 
   handleChange(evt) {
@@ -33,14 +43,30 @@ export class M1Page extends Component {
   handleSubmit() {
     const { miu, lambda, customer } = this.state;
     const { history } = this.props;
-    const answer = new M1Calc(lambda, miu, customer);
-    this.props.handleAnswer(answer, 'm1');
-    history.push('/answer');
+    let warn = '';
+    if (miu === 0) {
+      warn = 'Average service time cannot be zero';
+    } else if (lambda === 0) {
+      warn = 'Average arrival rate cannot be zero';
+    } else if (customer === 0) {
+      warn = 'Total customer cannot be zero';
+    }
+    if (warn === '') {
+      const answer = new M1Calc(
+        parseInt(lambda),
+        parseInt(miu),
+        parseInt(customer)
+      );
+      this.props.handleAnswer(answer);
+      history.push('/answer');
+    } else {
+      this.setState({ warn: warn, warning: true });
+    }
   }
 
   render() {
     const { handleChange, handleSubmit, handleBack } = this;
-    const { lambda, miu, customer } = this.state;
+    const { lambda, miu, customer, warn, warning } = this.state;
     return (
       <div className="mc">
         <div className="mc_left">
@@ -76,6 +102,11 @@ export class M1Page extends Component {
         <div className="mc_right">
           <LaptopSvg />
         </div>
+        {warning ? (
+          <div className="mc-warning">
+            <Warning warnText={warn} handleClose={this.handleClose} />
+          </div>
+        ) : null}
       </div>
     );
   }

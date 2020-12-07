@@ -1,6 +1,7 @@
 class M1Calc {
   constructor(lambda, miu, customer) {
     this.lambda = lambda;
+    this.mode = 'm1';
     this.miu = miu;
     this.customer = customer;
     this.intensity = lambda / miu;
