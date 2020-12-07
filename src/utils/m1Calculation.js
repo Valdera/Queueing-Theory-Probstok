@@ -52,6 +52,8 @@ class M1Calc {
     console.log(`Wq = ${this.calcWq()}`);
     console.log(`intensity = ${this.intensity}`)
     console.log(`p0 =  ${this.calcPn(0)}`);
+    console.log(`p3 =  ${this.calcPn(3)}`);
+
   }
 }
 

@@ -4,7 +4,7 @@ class McCalc {
         this.miu = miu;
         this.server = server;
         this.customer = customer;
-        this.intensity = lambda / miu;
+        this.intensity = lambda / (miu * server);
     }
 
     factorial = (num) => {
@@ -16,25 +16,35 @@ class McCalc {
 
     calcP0 = () => {
         let sumA = 0;
-        let sumB = 0;
-        for (let n = 1; n <= this.server; n++) {
-            sumA += Math.pow(this.lambda / this.miu, n) / this.factorial(n);
+        for (let n = 0; n <= this.server - 1; n++) {
+            sumA += Math.pow(this.lambda / this.miu, n) / this.factorial(n)
         }
-        for (let n = this.server + 1; n <= this.customer; n++) {
-            sumB = Math.pow(this.lambda / (this.server * this.miu), n - this.server)
+        const b = Math.pow(this.lambda / this.miu, this.server) / this.factorial(this.server);
+        const c = (1 - Math.pow(this.intensity, this.customer - this.server + 1)) / (1 - this.intensity);
+        const d = (this.customer - this.server + 1)
+        if (this.intensity !== 1) {
+            return Math.pow(sumA + (c * b), -1);
+        } else if (this.intensity === 1) {
+            return Math.pow(sumA + (d * b), -1)
         }
-        const c = Math.pow(this.lambda / this.miu, this.server) / this.factorial(this.server);
-        return 1 / (1 + sumA + c * sumB);
     }
 
     calcPn = (n) => {
-        return (Math.pow(this.intensity, n) / this.factorial(n)) * this.calcP0();
+        if (n === 0) {
+            return this.calcP0();
+        } else if (n < this.server) {
+            return (Math.pow(this.lambda / this.miu, n) / this.factorial(n)) * this.calcP0();
+        } else if (n >= this.server && n <= this.customer) {
+            return (Math.pow(this.lambda / this.miu, n) / (this.factorial(this.server) * Math.pow(this.server, n - this.server))) * this.calcP0();
+        } else if (n > this.customer) {
+            return 0;
+        }
     }
 
     calcL = () => {
         let sumA = 0;
         let sumB = 0;
-        for (let n = 0; n < this.server - 1; n++) {
+        for (let n = 0; n <= this.server - 1; n++) {
             sumA += n * this.calcPn(n);
             sumB += this.calcPn(n);
         }
@@ -42,7 +52,7 @@ class McCalc {
     }
 
     calcLq = () => {
-        const a = (this.calcP0() * Math.pow(this.intensity, this.server) * this.intensity) / (this.factorial(this.server) * Math.pow(1 - this.intensity, 2));
+        const a = (this.calcP0() * Math.pow(this.lambda / this.miu, this.server) * this.intensity) / (this.factorial(this.server) * Math.pow(1 - this.intensity, 2));
         const b = (1 - Math.pow(this.intensity, this.customer - this.server)) - ((this.customer - this.server) * Math.pow(this.intensity, this.customer - this.server) * (1 - this.intensity))
         return a * b;
     }
@@ -71,7 +81,7 @@ class McCalc {
         console.log(`Wq = ${this.calcWq()}`);
         console.log(`intensity = ${this.intensity}`);
         console.log(`p0 =  ${this.calcP0()}`);
-
+        console.log(`p3 =  ${this.calcPn(3)}`);
     }
 }
 const answer = new McCalc(2, 3, 3, 1)
