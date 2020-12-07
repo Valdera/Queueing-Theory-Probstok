@@ -7,10 +7,14 @@ class M1Calc {
   }
 
   calcPn = (n) => {
-    return (
-      ((1 - this.intensity) / (1 - Math.pow(this.intensity, this.customer + 1))) *
-      Math.pow(this.intensity, n)
-    );
+    if (n <= this.customer) {
+      return (
+        ((1 - this.intensity) / (1 - Math.pow(this.intensity, this.customer + 1))) *
+        Math.pow(this.intensity, n)
+      )
+    } else if (n > this.customer) {
+      return 0;
+    }
   }
 
   calcL = () => {
@@ -44,6 +48,10 @@ class M1Calc {
     return a / b;
   }
 
+  calcServerUltilization = () => {
+    return 1 - this.calcPn(0)
+  }
+
   debug = () => {
     console.log(`L = ${this.calcL()}`);
     console.log(`Lq = ${this.calcLq()}`);
@@ -57,6 +65,4 @@ class M1Calc {
   }
 }
 
-const answer = new M1Calc(2, 3, 3)
-
-answer.debug();
+export default M1Calc;

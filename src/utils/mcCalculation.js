@@ -84,6 +84,5 @@ class McCalc {
         console.log(`p3 =  ${this.calcPn(3)}`);
     }
 }
-const answer = new McCalc(2, 3, 3, 1)
 
-answer.debug();
+export default McCalc;
