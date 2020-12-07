@@ -1,0 +1,18 @@
+@import '../../sass/main.scss';
+
+.circle {
+  position: relative;
+  &-svg {
+    & > * {
+      width: 5.8rem;
+      position: absolute;
+      top: 2.4rem;
+    }
+  }
+  &-mid {
+    position: absolute;
+    top: 3rem;
+    left: 2.5rem;
+    font-size: 1.4rem;
+  }
+}

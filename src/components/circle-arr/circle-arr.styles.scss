@@ -1,0 +1,26 @@
+@import '../../sass/main.scss';
+
+.circlearr {
+  position: relative;
+  &-top {
+    position: absolute;
+    top: -1rem;
+    left: 6rem;
+  }
+  &-svg {
+    & > * {
+      width: 10rem;
+    }
+  }
+  &-bot {
+    position: absolute;
+    bottom: -0.4rem;
+    left: 6rem;
+  }
+  &-mid {
+    position: absolute;
+    top: 3.1rem;
+    left: 2.3rem;
+    font-size: 1.4rem;
+  }
+}

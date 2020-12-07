@@ -48,18 +48,18 @@ class TitleBar extends Component {
     return (
       <div className="title-bar">
         <div className="title-bar__content">
-          <i class="fas fa-flask"></i>
+          <i className="fas fa-flask"></i>
           <p className="title-bar__name">Tugas Probstok</p>
         </div>
         <div className="title-bar__tool">
           <button className="minimize__button" onClick={this.minimize}>
-            <i class="far fa-window-minimize"></i>
+            <i className="far fa-window-minimize"></i>
           </button>
           <button className="maximize__button" onClick={this.maximize}>
-            <i class="fas fa-window-maximize"></i>
+            <i className="fas fa-window-maximize"></i>
           </button>
           <button className="close__button" onClick={this.close}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </button>
         </div>
       </div>
