@@ -6,7 +6,8 @@ Desktop application for calculating queueing Theory
 
 ## Getting Started
 
-- Download this project
+- Download this project (by click code and click download as a zip)
+- Extract the zip
 - Open dist folder
 - Install Queueing Calculator Setup 0.1.0.exe
 
