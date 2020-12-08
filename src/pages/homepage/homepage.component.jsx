@@ -35,9 +35,9 @@ class HomePage extends Component {
             <p>Nama Anggota :</p>
             <ul>
               <li>Fauzan Valdera - 1906379320</li>
-              <li>Muhammad Zehan Bey -</li>
-              <li>Riandy Ekaputra -</li>
-              <li>Muhammad Fadhil Al Hafiz - </li>
+              <li>Muhammad Zehan Bey - 1906379314</li>
+              <li>Riandy Ekaputra - 1906379283</li>
+              <li>Muhammad Fadhil Al Hafiz - 1906354482</li>
             </ul>
           </div>
         </div>
