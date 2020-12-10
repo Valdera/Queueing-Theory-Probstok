@@ -1,8 +1,8 @@
 version: 0.1.0
 files:
   - url: Queueing-Calculator-Setup-0.1.0.exe
-    sha512: z3c6QCR9UKa9g3lqHHG80zXkdTseo2+4jIV9h+/2HTvAOhbTu+TSb78DNnZpSwEH+iu4tLtMKjYDVIKk+mKDGg==
-    size: 83032411
+    sha512: bjWoEJdrIAWns6T4qPkawG8W2kVHl79HIrv7m776I5zlK2BXWqKGEBqFlEOYSza+c36854NeAIAqZVd1CL3twg==
+    size: 83032323
 path: Queueing-Calculator-Setup-0.1.0.exe
-sha512: z3c6QCR9UKa9g3lqHHG80zXkdTseo2+4jIV9h+/2HTvAOhbTu+TSb78DNnZpSwEH+iu4tLtMKjYDVIKk+mKDGg==
-releaseDate: '2020-12-08T16:29:16.574Z'
+sha512: bjWoEJdrIAWns6T4qPkawG8W2kVHl79HIrv7m776I5zlK2BXWqKGEBqFlEOYSza+c36854NeAIAqZVd1CL3twg==
+releaseDate: '2020-12-10T17:19:09.602Z'

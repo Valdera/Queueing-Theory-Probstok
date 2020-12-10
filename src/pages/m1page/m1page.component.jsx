@@ -53,9 +53,9 @@ export class M1Page extends Component {
     }
     if (warn === '') {
       const answer = new M1Calc(
-        parseInt(lambda),
-        parseInt(miu),
-        parseInt(customer)
+        parseFloat(lambda),
+        parseFloat(miu),
+        parseFloat(customer)
       );
       this.props.handleAnswer(answer);
       history.push('/answer');
@@ -77,6 +77,7 @@ export class M1Page extends Component {
             handleChange={handleChange}
             min="0"
             name="lambda"
+            step="0.1"
           />
           <InputData
             labelText="Average service time (&micro;)"
@@ -84,6 +85,7 @@ export class M1Page extends Component {
             handleChange={handleChange}
             min="0"
             name="miu"
+            step="0.1"
           />
           <InputData
             labelText="Total customer (K) or (N)"
@@ -91,6 +93,7 @@ export class M1Page extends Component {
             handleChange={handleChange}
             min="0"
             name="customer"
+            step="1.0"
           />
           <div className="mc__button">
             <SubmitButton eventHandler={handleSubmit}>
